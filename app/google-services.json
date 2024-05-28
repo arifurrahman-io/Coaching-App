@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "587202540219",
+    "project_id": "coaching-bb1a9",
+    "storage_bucket": "coaching-bb1a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587202540219:android:ccdfee71b27fdc1ee72f9e",
+        "android_client_info": {
+          "package_name": "com.arifur.coaching"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD-VcptaIAVAYinuzrf16X4PJZmQv77ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

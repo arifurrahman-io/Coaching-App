@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+
+
+        <Button
+            android:id="@+id/addStudentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Student"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="addStudent" />
+
+        <Button
+            android:id="@+id/addPaymentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Payment"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="addPayment" />
+
+        <Button
+            android:id="@+id/addDailyCostButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Daily Cost"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="addDailyCost" />
+
+        <Button
+            android:id="@+id/viewSummaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Summary"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="viewSummary" />
+
+        <Button
+            android:id="@+id/viewMonthlyCostsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Monthly Costs"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="viewMonthlyCosts" />
+        <Button
+            android:id="@+id/viewPaymentHistoryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Payment History"
+            android:textSize="10pt"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="viewPaymentHistory" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
