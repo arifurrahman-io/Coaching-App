@@ -39,7 +39,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPaymentHistoryActivity extends AppCompatActivity {
+public class StudentPaymentHistoryActivity extends BaseActivity {
 
     private Spinner studentSpinner;
     private ListView paymentHistoryListView;
@@ -53,6 +53,10 @@ public class StudentPaymentHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_payment_history);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Payment History");
+        }
 
         studentSpinner = findViewById(R.id.studentSpinner);
         paymentHistoryListView = findViewById(R.id.paymentHistoryListView);
@@ -71,6 +75,7 @@ public class StudentPaymentHistoryActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void loadStudents() {
         FirebaseUtils.getStudents(new OnCompleteListener<QuerySnapshot>() {
@@ -132,10 +137,9 @@ public class StudentPaymentHistoryActivity extends AppCompatActivity {
     }
 
     private void requestPermission() {
-        ActivityCompat.requestPermissions(StudentPaymentHistoryActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        ActivityCompat.requestPermissions(StudentPaymentHistoryActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void createPdf() {
         String selectedStudent = studentSpinner.getSelectedItem().toString();
         String fileName = selectedStudent + "_payment_history.pdf";
@@ -180,7 +184,7 @@ public class StudentPaymentHistoryActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
+        if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 createPdf();
             } else {
@@ -188,4 +192,5 @@ public class StudentPaymentHistoryActivity extends AppCompatActivity {
             }
         }
     }
+
 }

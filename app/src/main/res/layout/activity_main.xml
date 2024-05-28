@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <LinearLayout
@@ -12,66 +12,189 @@
         android:layout_centerInParent="true"
         >
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center"
+           >
 
-        <Button
-            android:id="@+id/addStudentButton"
+           <androidx.cardview.widget.CardView
+               android:id="@+id/addStudentButton"
+               android:layout_width="150dp"
+               android:layout_height="150dp"
+               android:onClick="addStudent"
+               app:cardBackgroundColor="@color/colorPrimary"
+               app:cardCornerRadius="10dp"
+               android:layout_margin="5dp"
+               >
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:layout_gravity="center"
+                   android:text="Add Student"
+                   android:textSize="10pt"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:padding="10dp"
+                   android:layout_marginBottom="5dp"
+                   />
+
+           </androidx.cardview.widget.CardView>
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/addPaymentButton"
+               android:layout_width="150dp"
+               android:layout_height="150dp"
+               android:onClick="addPayment"
+               app:cardBackgroundColor="@color/colorPrimary"
+               app:cardCornerRadius="10dp"
+               android:layout_margin="5dp"
+               >
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:layout_gravity="center"
+                   android:text="Add Payment"
+                   android:textSize="10pt"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:padding="10dp"
+                   android:layout_marginBottom="5dp"
+                   />
+
+           </androidx.cardview.widget.CardView>
+
+
+       </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Student"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="addStudent" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
-        <Button
-            android:id="@+id/addPaymentButton"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/addDailyCostButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="addDailyCost"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Add Daily Cost"
+                    android:textSize="10pt"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/viewSummaryButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="viewSummary"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="View Summary"
+                    android:textSize="10pt"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Payment"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="addPayment" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/viewMonthlyCostsButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="viewMonthlyCosts"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="View Monthly Costs"
+                    android:textSize="10pt"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/viewPaymentHistoryButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="viewPaymentHistory"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="View Payment History"
+                    android:textSize="10pt"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/addDailyCostButton"
-            android:layout_width="match_parent"
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Daily Cost"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="addDailyCost" />
-
-        <Button
-            android:id="@+id/viewSummaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Summary"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="viewSummary" />
-
-        <Button
-            android:id="@+id/viewMonthlyCostsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Monthly Costs"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="viewMonthlyCosts" />
-        <Button
-            android:id="@+id/viewPaymentHistoryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Payment History"
-            android:textSize="10pt"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="viewPaymentHistory" />
-
+            android:text="Log Out"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            />
     </LinearLayout>
 
 

@@ -13,6 +13,7 @@ firebaseboom = "33.0.0"
 firebaseAuth = "23.0.0"
 firebaseFirestore = "25.0.0"
 pdf = "7.1.14"
+saveloin = "1.1.0-alpha03"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -27,6 +28,7 @@ firebaseboom = {group="com.google.firebase", name="firebase-bom", version.ref="f
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 pdf = {group = "com.itextpdf", name = "itext7-core" , version.ref="pdf"}
+savelogin = {group="androidx.security", name = "security-crypto", version.ref="saveloin"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

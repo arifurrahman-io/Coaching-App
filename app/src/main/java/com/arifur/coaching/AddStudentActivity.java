@@ -13,7 +13,7 @@ import com.arifur.coaching.utils.FirebaseUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class AddStudentActivity extends AppCompatActivity {
+public class AddStudentActivity extends BaseActivity {
 
     private EditText nameEditText;
     private EditText emailEditText;
@@ -23,6 +23,12 @@ public class AddStudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Add Student");
+        }
+
+
 
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.classEditText);

@@ -1,26 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/totalPaymentsTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total Payments: Tk. " />
 
-    <TextView
-        android:id="@+id/totalCostsTextView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total Costs: Tk. " />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/balanceTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Balance: Tk. " />
+        <TableLayout
+            android:id="@+id/summaryTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/table_cell_border"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:background="@drawable/table_cell_border">
+                <TextView
+                    android:text="Total Payment"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/table_cell_border" />
+                <TextView
+                    android:id="@+id/totalPaymentTextView"
+                    android:padding="8dp"
+                    android:text="Tk. 0.00"
+                    android:background="@drawable/table_cell_border" />
+            </TableRow>
+
+            <TableRow
+                android:background="@drawable/table_cell_border">
+                <TextView
+                    android:text="Total Cost"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/table_cell_border" />
+                <TextView
+                    android:id="@+id/totalCostTextView"
+                    android:padding="8dp"
+                    android:text="Tk. 0.00"
+                    android:background="@drawable/table_cell_border" />
+            </TableRow>
+
+            <TableRow
+                android:background="@drawable/table_cell_border">
+                <TextView
+                    android:text="Balance"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/table_cell_border" />
+                <TextView
+                    android:id="@+id/balanceTextView"
+                    android:padding="8dp"
+                    android:text="Tk. 0.00"
+                    android:background="@drawable/table_cell_border" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 </LinearLayout>
+

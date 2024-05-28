@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class AddPaymentActivity extends AppCompatActivity {
+public class AddPaymentActivity extends BaseActivity {
 
     private Spinner studentSpinner;
     private EditText amountEditText;
@@ -37,6 +37,10 @@ public class AddPaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Add Payment");
+        }
 
         studentSpinner = findViewById(R.id.studentSpinner);
         amountEditText = findViewById(R.id.amountEditText);

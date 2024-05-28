@@ -5,19 +5,41 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ListView
-        android:id="@+id/costHistoryListView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <TextView
         android:id="@+id/netCostTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:paddingTop="16dp" />
+        android:paddingTop="16dp"
+        android:text="Net Cost: Tk. 0.00" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TableLayout
+            android:id="@+id/costTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/table_cell_border"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:background="@drawable/table_cell_border">
+
+                <TextView
+                    android:text="Month"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/table_cell_border" />
+
+                <TextView
+                    android:text="Cost"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/table_cell_border" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 </LinearLayout>
-
-
-

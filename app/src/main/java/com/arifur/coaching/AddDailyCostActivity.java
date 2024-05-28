@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddDailyCostActivity extends AppCompatActivity {
+public class AddDailyCostActivity extends BaseActivity {
 
     private EditText costDescriptionEditText;
     private EditText costAmountEditText;
@@ -35,6 +35,10 @@ public class AddDailyCostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_daily_cost);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Add Cost");
+        }
 
         costDescriptionEditText = findViewById(R.id.costDescriptionEditText);
         costAmountEditText = findViewById(R.id.costAmountEditText);

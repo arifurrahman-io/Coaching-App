@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.arifur.coaching.R;
 import com.arifur.coaching.models.Cost;
 import com.arifur.coaching.models.Payment;
 import com.arifur.coaching.utils.FirebaseUtils;
@@ -14,20 +16,27 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
+import java.util.Locale;
 
-public class SummaryActivity extends AppCompatActivity {
+public class SummaryActivity extends BaseActivity {
 
-    private TextView totalPaymentsTextView;
-    private TextView totalCostsTextView;
+    private TextView totalPaymentTextView;
+    private TextView totalCostTextView;
     private TextView balanceTextView;
+    private List<Payment> paymentList;
+    private List<Cost> costList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        totalPaymentsTextView = findViewById(R.id.totalPaymentsTextView);
-        totalCostsTextView = findViewById(R.id.totalCostsTextView);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Transaction Summary");
+        }
+
+        totalPaymentTextView = findViewById(R.id.totalPaymentTextView);
+        totalCostTextView = findViewById(R.id.totalCostTextView);
         balanceTextView = findViewById(R.id.balanceTextView);
 
         loadSummary();
@@ -36,31 +45,48 @@ public class SummaryActivity extends AppCompatActivity {
     private void loadSummary() {
         FirebaseUtils.getPayments(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    List<Payment> payments = task.getResult().toObjects(Payment.class);
-                    double totalPayments = SummaryUtils.calculateTotalPayments(payments);
-                    totalPaymentsTextView.setText(String.format("Total Payments: Tk. %.2f", totalPayments));
-
-                    FirebaseUtils.getCosts(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                List<Cost> costs = task.getResult().toObjects(Cost.class);
-                                double totalCosts = SummaryUtils.calculateTotalCosts(costs);
-                                totalCostsTextView.setText(String.format("Total Costs: Tk. %.2f", totalCosts));
-
-                                double balance = SummaryUtils.calculateBalance(totalPayments, totalCosts);
-                                balanceTextView.setText(String.format("Balance: Tk. %.2f", balance));
-                            } else {
-                                Toast.makeText(SummaryActivity.this, "Error loading costs", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    paymentList = task.getResult().toObjects(Payment.class);
+                    calculateSummary();
                 } else {
-                    Toast.makeText(SummaryActivity.this, "Error loading payments", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SummaryActivity.this, "Failed to load payments", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        FirebaseUtils.getCosts(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    costList = task.getResult().toObjects(Cost.class);
+                    calculateSummary();
+                } else {
+                    Toast.makeText(SummaryActivity.this, "Failed to load costs", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void calculateSummary() {
+        if (paymentList == null || costList == null) {
+            return; // Wait until both lists are loaded
+        }
+
+        double totalPayments = 0;
+        for (Payment payment : paymentList) {
+            totalPayments += payment.getAmount();
+        }
+
+        double totalCosts = 0;
+        for (Cost cost : costList) {
+            totalCosts += cost.getAmount();
+        }
+
+        double balance = totalPayments - totalCosts;
+
+        totalPaymentTextView.setText(String.format(Locale.US, "Tk. %.2f", totalPayments));
+        totalCostTextView.setText(String.format(Locale.US, "Tk. %.2f", totalCosts));
+        balanceTextView.setText(String.format(Locale.US, "Tk. %.2f", balance));
     }
 }

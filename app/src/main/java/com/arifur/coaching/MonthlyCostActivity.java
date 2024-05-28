@@ -2,8 +2,8 @@ package com.arifur.coaching;
 
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +20,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class MonthlyCostActivity extends AppCompatActivity {
+public class MonthlyCostActivity extends BaseActivity {
 
-    private ListView costHistoryListView;
+    private TableLayout costTableLayout;
     private TextView netCostTextView;
     private List<Cost> costList;
 
@@ -33,14 +34,18 @@ public class MonthlyCostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthly_cost);
 
-        costHistoryListView = findViewById(R.id.costHistoryListView);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Monthly Expenses");
+        }
+
+        costTableLayout = findViewById(R.id.costTableLayout);
         netCostTextView = findViewById(R.id.netCostTextView);
 
         loadMonthlyCosts();
     }
 
     private void loadMonthlyCosts() {
-        FirebaseUtils.getMonthlyCosts(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseUtils.getCosts(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -49,7 +54,7 @@ public class MonthlyCostActivity extends AppCompatActivity {
                     double netCost = 0;
 
                     for (Cost cost : costList) {
-                        String month = cost.getDate().toString(); // Extract the "YYYY-MM" part of the date
+                        String month = cost.getDate().substring(0, 7); // Extract the "YYYY-MM" part of the date
                         double amount = cost.getAmount();
 
                         if (!monthlyCosts.containsKey(month)) {
@@ -59,18 +64,29 @@ public class MonthlyCostActivity extends AppCompatActivity {
                         netCost += amount;
                     }
 
-                    // Convert the monthly costs map to a list of strings for display
-                    List<String> costDetails = new ArrayList<>();
+                    // Display the monthly costs in the TableLayout
                     for (Map.Entry<String, Double> entry : monthlyCosts.entrySet()) {
-                        costDetails.add(entry.getKey() + ": Tk. " + String.format("%.2f", entry.getValue()));
+                        TableRow tableRow = new TableRow(MonthlyCostActivity.this);
+                        tableRow.setBackgroundResource(R.drawable.table_cell_border);
+
+                        TextView monthTextView = new TextView(MonthlyCostActivity.this);
+                        monthTextView.setText(entry.getKey());
+                        monthTextView.setPadding(8, 8, 8, 8);
+                        monthTextView.setBackgroundResource(R.drawable.table_cell_border);
+
+                        TextView costTextView = new TextView(MonthlyCostActivity.this);
+                        costTextView.setText(String.format(Locale.US, "Tk. %.2f", entry.getValue()));
+                        costTextView.setPadding(8, 8, 8, 8);
+                        costTextView.setBackgroundResource(R.drawable.table_cell_border);
+
+                        tableRow.addView(monthTextView);
+                        tableRow.addView(costTextView);
+
+                        costTableLayout.addView(tableRow);
                     }
 
-                    // Display the monthly costs in the ListView
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(MonthlyCostActivity.this, android.R.layout.simple_list_item_1, costDetails);
-                    costHistoryListView.setAdapter(adapter);
-
                     // Display the net cost
-                    netCostTextView.setText("Net Cost: Tk. " + String.format("%.2f", netCost));
+                    netCostTextView.setText(String.format(Locale.US, "Net Cost: Tk. %.2f", netCost));
                 } else {
                     Toast.makeText(MonthlyCostActivity.this, "Failed to load costs", Toast.LENGTH_SHORT).show();
                 }

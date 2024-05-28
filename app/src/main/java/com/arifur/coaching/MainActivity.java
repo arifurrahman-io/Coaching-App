@@ -5,15 +5,38 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import com.arifur.coaching.utils.PreferencesManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Home");
+        }
+
+        logoutButton = findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                PreferencesManager.getInstance(MainActivity.this).clearLoginInfo();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     public void addStudent(View view) {
@@ -41,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MySchoolApp", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("CoachingAppPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();

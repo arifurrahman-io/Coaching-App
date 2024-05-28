@@ -3,31 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center"
+    >
 
-    <EditText
-        android:id="@+id/costDescriptionEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/costDescriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:padding="15dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
-        android:inputType="text" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
 
-    <EditText
-        android:id="@+id/costAmountEditText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/costAmountEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:padding="15dp"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Amount"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
 
-    <Button
-        android:id="@+id/costDatePickerButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Date" />
+        >
 
-    <Button
-        android:id="@+id/addCostButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Cost" />
+        <Button
+            android:id="@+id/costDatePickerButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            />
+
+        <Button
+            android:id="@+id/addCostButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Add Cost"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            />
+
+    </LinearLayout>
+
+
+
 </LinearLayout>

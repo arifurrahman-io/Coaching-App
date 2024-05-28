@@ -23,7 +23,7 @@ public class FirebaseUtils {
                 .set(payment)
                 .addOnCompleteListener(onComplete);
     }
-    
+
 
     public static void addDailyCost(Cost cost, OnCompleteListener<DocumentReference> onCompleteListener) {
         FirebaseFirestore.getInstance().collection("costs").add(cost).addOnCompleteListener(onCompleteListener);
